@@ -501,7 +501,7 @@ local function fold_imports_for_buffer(attempts)
     -- 2. There are multiple groups (even if single line), OR
     -- 3. There are multiple imports total (even if in one group)
     if group[2] > group[1] or #fold_groups > 1 or #import_ranges > 1 then
-      vim.cmd(string.format("%d,%dfold", group[1], group[2]))
+      pcall(vim.cmd, string.format("%d,%dfold", group[1], group[2]))
       -- Store this fold range as an import fold
       table.insert(import_fold_ranges, { group[1], group[2] })
     end
